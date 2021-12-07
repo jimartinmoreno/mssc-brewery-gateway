@@ -46,7 +46,8 @@
             <version>3.0.3</version>
         </dependency>
 
-        <!-- Resilience4j is a lightweight fault tolerance library inspired by Netflix Hystrix, but designed for Java 8 and functional programming -->
+        <!-- Resilience4j is a lightweight fault tolerance library inspired by Netflix Hystrix,
+        but designed for Java 8 and functional programming -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
