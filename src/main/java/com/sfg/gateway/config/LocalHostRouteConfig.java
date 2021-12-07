@@ -13,18 +13,24 @@ public class LocalHostRouteConfig {
     @Bean
     public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/api/v1/beer*", "/api/v1/beer/*", "/api/v1/beerUpc/*")
-                        .and().host("**.localhost*")
+                .route("beer-service", r -> r.path("/api/v1/beer*", "/api/v1/beer/*", "/api/v1/beerUpc/*")
+                        .and()
+                        .host("**.localhost*")
                         .uri("http://localhost:8080")
-                        .id("beer-service"))
-                .route(r -> r.path("/api/v1/customers/**")
-                        .and().host("localhost**")
+                )
+                .route("order-service", r -> r.path("/api/v1/customers/**")
+                        .and()
+                        .host("localhost**")
                         .uri("http://localhost:8081")
-                        .id("order-service"))
-                .route(r -> r.path("/api/v1/beer/*/inventory")
-                        .and().host("localhost**")
+                )
+                .route("inventory-service", r -> r.path("/api/v1/beer/*/inventory")
+                        .and()
+                        .host("localhost**")
                         .uri("http://localhost:8082")
-                        .id("inventory-service"))
+                )
+                .route("inventory-failover-service", r -> r.path("/inventory-failover/**")
+                        .uri("http://localhost:8083")
+                )
                 .build();
     }
 }
